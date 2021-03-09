@@ -1,0 +1,26 @@
+#!/bin/bash
+
+DIR='app/'
+mkdir -p "$DIR"
+set -e
+
+ziplink () {
+    echo "aHR0cHM6Ly9naXRodWIuY29tL3Bva3VydC9OYW5hLVJlbWl4L2FyY2hpdmUvbWFzdGVyLnppcAo=" | base64 -d
+}
+
+nana () {
+    cd $DIR/*
+    python3 -m nana
+}
+
+setup () {
+    local zippath
+    zippath="app/nana.zip"
+    wget -q $(ziplink) -O "$zippath"
+    unzip -qq "$zippath" -d "$DIR"
+    rm -rf "$zippath"
+    sleep 2
+    nana
+}
+
+setup
