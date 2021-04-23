@@ -8,19 +8,19 @@ ziplink () {
     echo "aHR0cHM6Ly9naXRodWIuY29tL3Bva3VydC9OYW5hLVJlbWl4L2FyY2hpdmUvbWFzdGVyLnppcAo=" | base64 -d
 }
 
-nana () {
+skynoid () {
     cd $DIR/*
-    python3 -m nana
+    python3 -m skynoid
 }
 
 setup () {
     local zippath
-    zippath="app/nana.zip"
+    zippath="app/skynoid.zip"
     wget -q $(ziplink) -O "$zippath"
     unzip -qq "$zippath" -d "$DIR"
     rm -rf "$zippath"
     sleep 2
-    nana
+    skynoid
 }
 
 setup
